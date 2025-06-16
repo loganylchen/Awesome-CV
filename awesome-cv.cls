@@ -50,6 +50,7 @@
 \RequirePackage{booktabs}  % 专业表格线
 \RequirePackage{multirow}
 
+\RequirePackage[table,xcdraw]{xcolor}
 \RequirePackage{fontspec}
 \RequirePackage[UTF8]{ctex}
 % Needed to make fixed length table
@@ -179,6 +180,10 @@
 %                Configuration for styles
 %-------------------------------------------------------------------------------
 % Configure styles for each CV elements
+
+% For table
+\renewcommand{\tiny}{\fontsize{8pt}{1em}\bodyfontlight\color{text}}
+
 % For fundamental structures
 \newcommand*{\headerfirstnamestyle}[1]{{\fontsize{32pt}{1em}\headerfontlight\color{graytext} #1}}
 \newcommand*{\headerlastnamestyle}[1]{{\fontsize{32pt}{1em}\headerfont\bfseries\color{text} #1}}
