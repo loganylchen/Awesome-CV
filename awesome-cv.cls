@@ -46,6 +46,12 @@
 %-------------------------------------------------------------------------------
 %                3rd party packages
 %-------------------------------------------------------------------------------
+\RequirePackage{tabularx}  % 自适应宽度表格
+\RequirePackage{booktabs}  % 专业表格线
+\RequirePackage{multirow}
+
+\RequirePackage{fontspec}
+\RequirePackage[UTF8]{ctex}
 % Needed to make fixed length table
 \RequirePackage{array}
 % Needed to handle list environment
@@ -756,7 +762,7 @@
 }{%
   \end{itemize}
   \end{justify}
-  \vspace{-4.0mm}
+  \vspace{4.0mm}
 }
 
 
