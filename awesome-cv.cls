@@ -182,7 +182,9 @@
 % Configure styles for each CV elements
 
 % For table
-\newcommand{\tablefont}{\fontsize{10.5pt}{1em}\bodyfontlight\color{text}}
+\newcommand*{\tablefont}{\fontsize{10.5pt}{1em}\bodyfontlight\color{text}}
+
+\newcommand{\custhl}[1]{{\color{red} #1}}
 % For publication
 
 \newcommand{\publicationfont}{\fontsize{4pt}{1em}\bodyfontlight\color{text}}
