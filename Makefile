@@ -24,7 +24,7 @@ PRINT:
 
 # Generic rule to build PDF from any .tex file
 %.pdf: $(EXAMPLES_DIR)/%.tex  $(RESUME_SRCS) $(CV_SRCS) $(CV_ZH_SRCS)
-	$(CC) -output-directory=$(EXAMPLES_DIR)/ $<
+	$(CC) -output-directory=$(EXAMPLES_DIR) $<
 
 clean:
 	rm -rf $(EXAMPLES_DIR)/*.pdf
