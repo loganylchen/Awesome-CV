@@ -1,34 +1,20 @@
-.PHONY: examples
+.PHONY: examples all clean
 
 CC = xelatex
 CN_CC = 
 EXAMPLES_DIR = examples
-RESUME_DIR = examples/resume
-CV_DIR = examples/cv
-PDF_DIR= pdfout
-RESUME_SRCS = $(shell find $(RESUME_DIR) -name '*.tex')
-CV_SRCS = $(shell find $(CV_DIR) -name '*.tex')
+PDF_DIR = pdfout
 
-examples: $(foreach x, coverletter cv cv_2page_zh resume cv_cn cv_compute_zh, $x.pdf)
+# Find all .tex files directly in examples directory (not subdirectories)
+TEX_FILES = $(shell find $(EXAMPLES_DIR) -maxdepth 1 -name '*.tex' -type f)
+# Convert .tex files to .pdf targets
+PDF_TARGETS = $(patsubst $(EXAMPLES_DIR)/%.tex,%.pdf,$(TEX_FILES))
 
-resume.pdf: $(EXAMPLES_DIR)/resume.tex $(RESUME_SRCS)
-	$(CC) -output-directory=$(PDF_DIR) $<
+all: $(PDF_TARGETS)
+examples: all
 
-cv_2page_zh.pdf: $(EXAMPLES_DIR)/resume.tex $(RESUME_SRCS)
-	$(CC) -output-directory=$(PDF_DIR) $<
-
-cv.pdf: $(EXAMPLES_DIR)/cv_2page_zh.tex $(CV_SRCS)
-	$(CC) -output-directory=$(PDF_DIR) $<
-
-
-cv_cn.pdf: $(EXAMPLES_DIR)/cv_cn.tex $(CV_SRCS)
-	$(CC) -output-directory=$(PDF_DIR) $<
-
-
-cv_compute_zh.pdf: $(EXAMPLES_DIR)/cv_compute_zh.tex
-	$(CC) -output-directory=$(EXAMPLES_DIR) $<
-
-coverletter.pdf: $(EXAMPLES_DIR)/coverletter.tex
+# Generic rule to build PDF from any .tex file
+%.pdf: $(EXAMPLES_DIR)/%.tex
 	$(CC) -output-directory=$(PDF_DIR) $<
 
 clean:
