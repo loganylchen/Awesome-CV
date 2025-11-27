@@ -15,7 +15,7 @@ examples: all
 
 # Generic rule to build PDF from any .tex file
 %.pdf: $(EXAMPLES_DIR)/%.tex 
-	$(CC) -output-directory=$(PDF_DIR) $<
+	$(CC) -output-directory=$(EXAMPLES_DIR)/ $<
 
 clean:
-	rm -rf $(PDF_DIR)/*.pdf
+	rm -rf $(EXAMPLES_DIR)/*.pdf
