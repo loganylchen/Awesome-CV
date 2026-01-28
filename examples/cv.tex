@@ -18,10 +18,17 @@
 % CONFIGURATIONS
 %-------------------------------------------------------------------------------
 % A4 paper size by default, use 'letterpaper' for US letter
-\documentclass[11pt, a4paper]{awesome-cv}
+\documentclass[18pt, a4paper]{awesome-cv}
 
+
+% Config
+\setCJKmainfont{Adobe Kaiti Std}
+% \setmainfont{Courier New}
+% \setmonofont{Courier New}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+%---------------------------------------------------------------
 % Configure page margins with geometry
-\geometry{left=1.4cm, top=.8cm, right=1.4cm, bottom=1.8cm, footskip=.5cm}
+\geometry{left=2cm, top=2cm, right=2cm, bottom=2.5cm, footskip=.5cm}
 
 % Color for highlights
 % Awesome Colors: awesome-emerald, awesome-skyblue, awesome-red, awesome-pink, awesome-orange
@@ -46,24 +53,24 @@
 
 
 %-------------------------------------------------------------------------------
-%	PERSONAL INFORMATION
-%	Comment any of the lines below if they are not required
+% PERSONAL INFORMATION
+% Comment any of the lines below if they are not required
 %-------------------------------------------------------------------------------
 % Available options: circle|rectangle,edge/noedge,left/right
-% \photo{./examples/profile.png}
-\name{Claud D.}{Park}
-\position{Site Reliability Engineer{\enskip\cdotp\enskip}Software Architect}
-\address{235, World Cup buk-ro, Mapo-gu, Seoul, 03936, Republic of Korea}
+\photo{./examples/profile.jpg}
+\name{Yuelong}{CHEN}
+% \position{生物信息{\enskip\cdotp\enskip}细胞分子生物}
+\address{RM113, RRSSB, CUHK, Shatin, NT, Hong Kong}
 
-\mobile{(+82) 10-9030-1843}
-\email{posquit0.bj@gmail.com}
-%\dateofbirth{January 1st, 1970}
-\homepage{www.posquit0.com}
-\github{posquit0}
-\linkedin{posquit0}
+\mobile{(+852) 69250752}
+\email{yuelong.chen.btr@gmail.com}
+% \dateofbirth{1989年4月22日}
+\homepage{https://loganylchen.github.io}
+\github{loganylchen}
+% \linkedin{posquit0}
 % \gitlab{gitlab-id}
 % \stackoverflow{SO-id}{SO-name}
-% \twitter{@twit}
+% \twitter{@logan\_cyl}
 % \skype{skype-id}
 % \reddit{reddit-id}
 % \medium{medium-id}
@@ -75,7 +82,7 @@
 % \googlescholar{googlescholar-id}{}
 % \extrainfo{extra information}
 
-\quote{``Be the change that you want to see in the world."}
+\quote{``Done is better than perfection"}
 
 
 %-------------------------------------------------------------------------------
@@ -89,23 +96,25 @@
 % Leave any of these blank if they are not needed
 \makecvfooter
   {\today}
-  {Claud D. Park~~~·~~~Curriculum Vitae}
+  {Yuelong CHEN~~~·~~~Curriculum Vitae}
   {\thepage}
 
 
 %-------------------------------------------------------------------------------
-%	CV/RESUME CONTENT
-%	Each section is imported separately, open each file in turn to modify content
+% CV/RESUME CONTENT
+% Each section is imported separately, open each file in turn to modify content
 %-------------------------------------------------------------------------------
+\input{cv/summary.tex}
+
 \input{cv/education.tex}
-\input{cv/skills.tex}
 \input{cv/experience.tex}
-\input{cv/extracurricular.tex}
+\input{cv/patents.tex}
 \input{cv/honors.tex}
-\input{cv/certificates.tex}
-\input{cv/presentation.tex}
-\input{cv/writing.tex}
-\input{cv/committees.tex}
+% \input{cv/fundings.tex}
+
+% \input{cv/statement.tex}
+\input{cv/skills.tex}
+\input{cv/publications.tex}
 
 
 %-------------------------------------------------------------------------------
