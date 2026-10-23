@@ -95,6 +95,17 @@ docker run --rm --user $(id -u):$(id -g) -i -w "/doc" -v "$PWD":/doc thomasweise
 
 In either case, this should result in the creation of ``{your-cv}.pdf``
 
+#### Versioned PDF releases
+
+Push a tag on a commit containing the release workflow to archive that version's PDFs:
+
+```bash
+git tag -a v1.0.0 -m "CV v1.0.0"
+git push origin v1.0.0
+```
+
+After a successful build, GitHub Actions creates a release for the tag and attaches all PDFs from `examples/`. Download each version from the repository's **Releases** page. Use a new tag for each version you want to keep.
+
 
 ## Credit
 
