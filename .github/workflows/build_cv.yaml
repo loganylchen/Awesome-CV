@@ -1,27 +1,49 @@
 name: Build CV with Docker
 
 on:
-  workflow_dispatch:
-  push:
-  pull_request:
-  
+  workflow_dispatch: {}
+  push: {}
+  pull_request: {}
+
+permissions:
+  contents: read
 
 jobs:
   build-and-run:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-      - name: Build Docker image
-        run: docker build -t awesome-cv -f .devcontainer/Dockerfile .
+    - name: Build Docker image
+      run: docker build -t awesome-cv -f .devcontainer/Dockerfile .
 
-      - name: Run make inside Docker container
-        run: docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace awesome-cv make
+    - name: Run make inside Docker container
+      run: docker run --rm -v "$GITHUB_WORKSPACE:/workspace" -w /workspace awesome-cv make
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: cv-build-results
-          path: |
-            examples/*.pdf
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: cv-build-results
+        path: examples/*.pdf
+        if-no-files-found: error
+
+  release:
+    needs: build-and-run
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - name: Download built PDFs
+      uses: actions/download-artifact@v4
+      with:
+        name: cv-build-results
+        path: examples
+
+    - name: Publish PDFs to GitHub Release
+      uses: softprops/action-gh-release@v3
+      with:
+        tag_name: ${{ github.ref_name }}
+        files: examples/*.pdf
+        fail_on_unmatched_files: true
