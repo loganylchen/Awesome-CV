@@ -42,7 +42,7 @@
   \setlength{\tabcolsep}{0pt}
   \setlength{\parskip}{0pt}
   \renewcommand{\arraystretch}{1.15}
-  \begin{tabular}{@{}p{3cm}@{\hspace{.4cm}}p{\dimexpr\textwidth-3.4cm\relax}@{}}
+  \begin{tabular}{@{}>{\raggedright\arraybackslash}p{3cm}@{\hspace{.4cm}}>{\raggedright\arraybackslash}p{\dimexpr\textwidth-3.4cm\relax}@{}}
 }{%
   \end{tabular}\par
 }
@@ -53,5 +53,12 @@
 \homepage{loganylchen.github.io}
 \github{loganylchen}
 \extrainfo{\mbox{\href{tel:+8618500200613}{(+86) 185 0020 0613}}}
+% Put the second telephone number on its own line without a trailing separator.
+\makeatletter
+\patchcmd{\makecvheader}
+  {\ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}\@extrainfo}
+  {\\[2pt]\@extrainfo}
+  {}{\PackageError{cv-common}{Could not configure the second contact line}{Check the Awesome-CV header definition.}}
+\makeatother
 \newcommand{\cvUpdatedDate}{\number\year-\ifnum\month<10 0\fi\number\month-\ifnum\day<10 0\fi\number\day}
 \hypersetup{pdfauthor={Yuelong Chen}, pdfsubject={Curriculum vitae}}
