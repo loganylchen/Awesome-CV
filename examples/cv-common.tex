@@ -1,6 +1,7 @@
 %!TEX encoding = UTF-8 Unicode
 % Shared layout and contact details for both language versions.
 \usepackage{needspace}
+\usepackage{xpatch}
 \IfFontExistsTF{Noto Sans CJK SC}{
   \setCJKmainfont{Noto Sans CJK SC}
 }{
@@ -55,7 +56,7 @@
 \extrainfo{\mbox{\href{tel:+8618500200613}{(+86) 185 0020 0613}}}
 % Put the second telephone number on its own line without a trailing separator.
 \makeatletter
-\patchcmd{\makecvheader}
+\xpatchcmd{\makecvheader}
   {\ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}\@extrainfo}
   {\\[2pt]\@extrainfo}
   {}{\PackageError{cv-common}{Could not configure the second contact line}{Check the Awesome-CV header definition.}}
