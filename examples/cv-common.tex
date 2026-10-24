@@ -11,10 +11,14 @@
   }
 }
 \geometry{left=2cm, top=1.6cm, right=2cm, bottom=2cm, footskip=.8cm}
+\linespread{1.0}
 \colorlet{awesome}{awesome-nephritis}
 \setbool{acvSectionColorHighlight}{true}
-\renewcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
+\renewcommand{\acvHeaderSocialSep}{\enskip\textbar\enskip}
 \setlength{\emergencystretch}{2em}
+\renewcommand{\headerpositionstyle}[1]{{\fontsize{9pt}{11pt}\bodyfont\color{awesome}#1}}
+\renewcommand{\headeraddressstyle}[1]{{\fontsize{8pt}{10pt}\bodyfont\color{graytext}#1}}
+\renewcommand{\footerstyle}[1]{{\fontsize{8pt}{10pt}\bodyfont\color{graytext}#1}}
 % Color whole headings, including Chinese headings shorter than three characters.
 \renewcommand{\sectionstyle}[1]{{\fontsize{14pt}{17pt}\bodyfont\bfseries\color{awesome}#1}}
 \renewcommand{\subsectionstyle}[1]{{\fontsize{11pt}{14pt}\bodyfont\bfseries\color{text}#1}}
@@ -36,6 +40,7 @@
 \renewenvironment{cvskills}{%
   \par\vspace{\acvSectionContentTopSkip}
   \setlength{\tabcolsep}{0pt}
+  \setlength{\parskip}{0pt}
   \renewcommand{\arraystretch}{1.15}
   \begin{tabular}{@{}p{3cm}@{\hspace{.4cm}}p{\dimexpr\textwidth-3.4cm\relax}@{}}
 }{%
@@ -47,5 +52,6 @@
 \email{yuelong.chen.btr@gmail.com}
 \homepage{loganylchen.github.io}
 \github{loganylchen}
-\extrainfo{\href{tel:+8618500200613}{(+86) 185 0020 0613}}
+\extrainfo{\mbox{\href{tel:+8618500200613}{(+86) 185 0020 0613}}}
+\newcommand{\cvUpdatedDate}{\number\year-\ifnum\month<10 0\fi\number\month-\ifnum\day<10 0\fi\number\day}
 \hypersetup{pdfauthor={Yuelong Chen}, pdfsubject={Curriculum vitae}}
