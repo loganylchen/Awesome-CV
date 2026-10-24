@@ -14,6 +14,10 @@
 \colorlet{awesome}{awesome-nephritis}
 \setbool{acvSectionColorHighlight}{true}
 \renewcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
+\setlength{\emergencystretch}{2em}
+% Color whole headings, including Chinese headings shorter than three characters.
+\renewcommand{\sectionstyle}[1]{{\fontsize{14pt}{17pt}\bodyfont\bfseries\color{awesome}#1}}
+\renewcommand{\subsectionstyle}[1]{{\fontsize{11pt}{14pt}\bodyfont\bfseries\color{text}#1}}
 \renewcommand{\paragraphstyle}{\fontsize{10.5pt}{13pt}\bodyfont\upshape\color{text}}
 \renewcommand{\descriptionstyle}[1]{{\fontsize{10.5pt}{13pt}\bodyfont\upshape\color{text}#1}}
 \renewcommand{\entrydatestyle}[1]{{\fontsize{10pt}{12pt}\bodyfont\color{graytext}#1}}
@@ -25,6 +29,8 @@
 % Keep section headings with the first lines of their content.
 \let\cvOriginalSection\cvsection
 \renewcommand{\cvsection}[1]{\par\Needspace{6\baselineskip}\cvOriginalSection{#1}\par\nobreak}
+\let\cvOriginalSubsection\cvsubsection
+\renewcommand{\cvsubsection}[1]{\par\Needspace{4\baselineskip}\cvOriginalSubsection{#1}\par\nobreak}
 
 % Fixed total width lets long skill categories and descriptions wrap.
 \renewenvironment{cvskills}{%

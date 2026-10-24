@@ -1,4 +1,5 @@
 .PHONY: all examples clean
+.DELETE_ON_ERROR:
 
 LATEX = xelatex
 LATEXFLAGS = -interaction=nonstopmode -halt-on-error -file-line-error

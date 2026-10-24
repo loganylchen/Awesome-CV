@@ -13,10 +13,10 @@ make
 make examples
 
 # Build specific document (PDFs created in examples/)
-xelatex examples/resume.tex      # English resume
-xelatex examples/cv.tex         # English CV
-xelatex examples/cv_zh.tex      # Chinese CV
-xelatex examples/coverletter.tex # Cover letter
+make examples/cv.pdf            # English personal CV
+make examples/cv_zh.pdf          # Chinese personal CV
+make examples/resume.pdf        # Upstream resume example
+make examples/coverletter.pdf   # Upstream cover-letter example
 
 # Clean build artifacts
 make clean  # Removes generated PDFs and auxiliary files from examples/
@@ -83,7 +83,7 @@ yamllint .
 
 ### Language Support
 - **UTF-8 encoding**: Add `%!TEX encoding = UTF-8 Unicode` at top of all files
-- **Chinese documents**: Set CJK font in cv_zh.tex: `\setCJKmainfont{Adobe Kaiti Std}`
+- **Personal CVs**: CJK fonts are configured once in `examples/cv-common.tex`, preferring Noto Sans CJK SC with PingFang SC and Adobe Kaiti Std fallbacks.
   - macOS alternative: `\setCJKmainfont{PingFang SC}`
   - Windows alternative: `\setCJKmainfont{SimSun}`
   - Linux alternative: `\setCJKmainfont{Noto Sans CJK SC}`
