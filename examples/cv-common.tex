@@ -1,0 +1,45 @@
+%!TEX encoding = UTF-8 Unicode
+% Shared layout and contact details for both language versions.
+\usepackage{needspace}
+\IfFontExistsTF{Noto Sans CJK SC}{
+  \setCJKmainfont{Noto Sans CJK SC}
+}{
+  \IfFontExistsTF{PingFang SC}{
+    \setCJKmainfont{PingFang SC}
+  }{
+    \setCJKmainfont{Adobe Kaiti Std}
+  }
+}
+\geometry{left=2cm, top=1.6cm, right=2cm, bottom=2cm, footskip=.8cm}
+\colorlet{awesome}{awesome-nephritis}
+\setbool{acvSectionColorHighlight}{true}
+\renewcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
+\renewcommand{\paragraphstyle}{\fontsize{10.5pt}{13pt}\bodyfont\upshape\color{text}}
+\renewcommand{\descriptionstyle}[1]{{\fontsize{10.5pt}{13pt}\bodyfont\upshape\color{text}#1}}
+\renewcommand{\entrydatestyle}[1]{{\fontsize{10pt}{12pt}\bodyfont\color{graytext}#1}}
+\renewcommand{\entrylocationstyle}[1]{{\fontsize{10pt}{12pt}\bodyfont\color{graytext}#1}}
+\renewcommand{\entrypositionstyle}[1]{{\fontsize{10.5pt}{13pt}\bodyfont\color{graytext}#1}}
+\renewcommand{\skilltypestyle}[1]{{\fontsize{10pt}{12pt}\bodyfont\bfseries\color{darktext}#1}}
+\renewcommand{\skillsetstyle}[1]{{\fontsize{10pt}{12pt}\bodyfont\color{text}#1}}
+
+% Keep section headings with the first lines of their content.
+\let\cvOriginalSection\cvsection
+\renewcommand{\cvsection}[1]{\par\Needspace{6\baselineskip}\cvOriginalSection{#1}\par\nobreak}
+
+% Fixed total width lets long skill categories and descriptions wrap.
+\renewenvironment{cvskills}{%
+  \par\vspace{\acvSectionContentTopSkip}
+  \setlength{\tabcolsep}{0pt}
+  \renewcommand{\arraystretch}{1.15}
+  \begin{tabular}{@{}p{3cm}@{\hspace{.4cm}}p{\dimexpr\textwidth-3.4cm\relax}@{}}
+}{%
+  \end{tabular}\par
+}
+
+\photo[circle,noedge,left]{./examples/profile.jpg}
+\mobile{(+852) 6925 0752}
+\email{yuelong.chen.btr@gmail.com}
+\homepage{loganylchen.github.io}
+\github{loganylchen}
+\extrainfo{\href{tel:+8618500200613}{(+86) 185 0020 0613}}
+\hypersetup{pdfauthor={Yuelong Chen}, pdfsubject={Curriculum vitae}}

@@ -1,4 +1,5 @@
 ### TeX ###
+/examples/*.pdf
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -20,4 +21,3 @@
 ### Mac OS X ###
 ## Mac OS X metadata files:
 *.DS_Store
-

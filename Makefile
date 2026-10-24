@@ -1,30 +1,20 @@
-.PHONY: examples all clean
+.PHONY: all examples clean
 
-CC = xelatex
-CN_CC = 
+LATEX = xelatex
+LATEXFLAGS = -interaction=nonstopmode -halt-on-error -file-line-error
 EXAMPLES_DIR = examples
-PDF_DIR = pdfout
-RESUME_DIR = examples/resume
-CV_DIR = examples/cv
-CV_ZH_DIR = examples/cv-zh
-RESUME_SRCS = $(shell find $(RESUME_DIR) -name '*.tex')
-CV_SRCS = $(shell find $(CV_DIR) -name '*.tex')
-CV_ZH_SRCS = $(shell find $(CV_ZH_DIR) -name '*.tex')
-# Find all .tex files directly in examples directory (not subdirectories)
-TEX_FILES = $(shell find $(EXAMPLES_DIR) -maxdepth 1 -name '*.tex' -type f)
-# Convert .tex files to .pdf targets
-PDF_TARGETS = $(patsubst $(EXAMPLES_DIR)/%.tex,%.pdf,$(TEX_FILES))
+CV_PDFS = $(EXAMPLES_DIR)/cv.pdf $(EXAMPLES_DIR)/cv_zh.pdf
+SAMPLE_PDFS = $(EXAMPLES_DIR)/resume.pdf $(EXAMPLES_DIR)/coverletter.pdf
+SECTION_SRCS = $(wildcard $(EXAMPLES_DIR)/cv/*.tex $(EXAMPLES_DIR)/cv-zh/*.tex $(EXAMPLES_DIR)/resume/*.tex)
 
-all: $(PDF_TARGETS)
-examples: all PRINT
+# Personal documents only; upstream templates are available via make examples.
+all: $(CV_PDFS)
 
-PRINT: 
-	echo $(TEX_FILES)  
+examples: all $(SAMPLE_PDFS)
 
-
-# Generic rule to build PDF from any .tex file
-%.pdf: $(EXAMPLES_DIR)/%.tex  $(RESUME_SRCS) $(CV_SRCS) $(CV_ZH_SRCS)
-	$(CC) -output-directory=$(EXAMPLES_DIR) $<
+$(EXAMPLES_DIR)/%.pdf: $(EXAMPLES_DIR)/%.tex awesome-cv.cls $(EXAMPLES_DIR)/cv-common.tex $(EXAMPLES_DIR)/profile.jpg $(SECTION_SRCS)
+	$(LATEX) $(LATEXFLAGS) -output-directory=$(EXAMPLES_DIR) $<
+	$(LATEX) $(LATEXFLAGS) -output-directory=$(EXAMPLES_DIR) $<
 
 clean:
-	rm -rf $(EXAMPLES_DIR)/*.pdf
+	rm -f $(CV_PDFS) $(SAMPLE_PDFS) $(EXAMPLES_DIR)/*.aux $(EXAMPLES_DIR)/*.log $(EXAMPLES_DIR)/*.out

@@ -25,7 +25,9 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: cv-build-results
-        path: examples/*.pdf
+        path: |
+          examples/cv.pdf
+          examples/cv_zh.pdf
         if-no-files-found: error
 
   release:
@@ -45,5 +47,7 @@ jobs:
       uses: softprops/action-gh-release@v3
       with:
         tag_name: ${{ github.ref_name }}
-        files: examples/*.pdf
+        files: |
+          examples/cv.pdf
+          examples/cv_zh.pdf
         fail_on_unmatched_files: true

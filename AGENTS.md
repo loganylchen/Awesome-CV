@@ -6,8 +6,11 @@ This document provides guidance for agentic coding agents working with the Aweso
 
 ### Building Documents
 ```bash
-# Build all documents
+# Build the English and Chinese personal CVs
 make
+
+# Also build upstream resume and cover-letter examples
+make examples
 
 # Build specific document (PDFs created in examples/)
 xelatex examples/resume.tex      # English resume
@@ -16,7 +19,7 @@ xelatex examples/cv_zh.tex      # Chinese CV
 xelatex examples/coverletter.tex # Cover letter
 
 # Clean build artifacts
-make clean  # Removes all *.pdf from examples/
+make clean  # Removes generated PDFs and auxiliary files from examples/
 ```
 
 ### Linting
@@ -35,7 +38,9 @@ yamllint .
 ## Code Style Guidelines
 
 ### File Structure
-- **Main documents**: resume.tex (英文简历), cv.tex (英文CV), cv_zh.tex (中文CV), coverletter.tex (求职信)
+- **Personal documents**: cv.tex (英文CV), cv_zh.tex (中文CV)
+- **Shared layout/contact information**: examples/cv-common.tex
+- **Upstream examples**: resume.tex, resume/, coverletter.tex (not personal content; excluded from default builds and releases)
 - **Section files**: examples/resume/, examples/cv/, examples/cv-zh/
 - **Class file**: awesome-cv.cls (defines all commands and styling)
 
@@ -173,9 +178,10 @@ make clean && make
 - Special characters → Escape with backslash: `\&`, `\_`, `\%`, `\$`
 
 ### CI/CD
-- Workflow in `.github/workflows/build_cv.yaml` builds all documents on push
+- Workflow in `.github/workflows/build_cv.yaml` builds both personal CVs on push
 - Uses Docker for consistent environment
 - Uploads generated PDFs as artifacts
+- Tag pushes publish `cv.pdf` and `cv_zh.pdf` as GitHub Release assets
 - Checks successful compilation only (not visual correctness)
 
 ### When Editing

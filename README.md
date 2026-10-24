@@ -1,137 +1,48 @@
-<h1 align="center">
-  <a href="https://github.com/posquit0/Awesome-CV" title="AwesomeCV Documentation">
-    <img alt="AwesomeCV" src="https://github.com/posquit0/Awesome-CV/raw/master/icon.png" width="200px" height="200px" />
-  </a>
-  <br />
-  Awesome CV
-</h1>
+# Yuelong Chen · 陈玥茏
 
-<p align="center">
-  LaTeX template for your outstanding job application
-</p>
+中英文个人学术 CV，使用 [Awesome-CV](https://github.com/posquit0/Awesome-CV) LaTeX 模板。
 
-<div align="center">
-  <a href="https://www.paypal.me/posquit0">
-    <img alt="Donate" src="https://img.shields.io/badge/Donate-PayPal-blue.svg" />
-  </a>
-  <a href="https://github.com/posquit0/Awesome-CV/actions/workflows/main.yml">
-    <img alt="GitHub Actions" src="https://github.com/posquit0/Awesome-CV/actions/workflows/main.yml/badge.svg" />
-  </a>
-  <a href="https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/resume.pdf">
-    <img alt="Example Resume" src="https://img.shields.io/badge/resume-pdf-green.svg" />
-  </a>
-  <a href="https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/cv.pdf">
-    <img alt="Example CV" src="https://img.shields.io/badge/cv-pdf-green.svg" />
-  </a>
-  <a href="https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/coverletter.pdf">
-    <img alt="Example Coverletter" src="https://img.shields.io/badge/coverletter-pdf-green.svg" />
-  </a>
-</div>
+统一维护分支为 `cv-unified`。原有 `main`、`jing-gang-shan`、`qiongtai-normal-university` 和 `tropical-ocean-university` 的历史已合并到此分支；各定制版本可通过 `cv-2026-10-24-*` tags 和 [Releases](https://github.com/loganylchen/Awesome-CV/releases) 查看。
 
-<br />
+## 编辑
 
-## What is Awesome CV?
+- 英文内容：`examples/cv/`；中文内容：`examples/cv-zh/`。
+- 主文档：`examples/cv.tex` 和 `examples/cv_zh.tex`。
+- 共用排版、字体和联系方式：`examples/cv-common.tex`。
+- 两种语言保持相同的章节、条目和时间线。已发表论文与未发表稿件分列。
+- 修订依据和待确认事实见 [修订记录](docs/cv-revision-notes.md)。
 
-**Awesome CV** is LaTeX template for a **CV(Curriculum Vitae)**, **Résumé** or **Cover Letter** inspired by [Fancy CV](https://www.sharelatex.com/templates/cv-or-resume/fancy-cv). It is easy to customize your own template, especially since it is really written by a clean, semantic markup.
+## 编译
 
-
-## Donate
-
-Please help keep this project alive! Donations are welcome and will go towards further development of this project.
-
-    PayPal: paypal.me/posquit0
-
-*Thank you for your support!*
-
-## Preview
-
-#### Résumé
-
-You can see [PDF](https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/resume.pdf)
-
-| Page. 1 | Page. 2 |
-|:---:|:---:|
-| [![Résumé](https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/resume-0.png)](https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/resume.pdf)  | [![Résumé](https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/resume-1.png)](https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/resume.pdf) |
-
-#### Cover Letter
-
-You can see [PDF](https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/coverletter.pdf)
-
-| Without Sections | With Sections |
-|:---:|:---:|
-| [![Cover Letter(Traditional)](https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/coverletter-0.png)](https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/coverletter.pdf)  | [![Cover Letter(Awesome)](https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/coverletter-1.png)](https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/coverletter.pdf) |
-
-
-## Quick Start
-
-* [**Edit Résumé on OverLeaf.com**](https://www.overleaf.com/latex/templates/awesome-cv/tvmzpvdjfqxp)
-* [**Edit Cover Letter on OverLeaf.com**](https://www.overleaf.com/latex/templates/awesome-cv-cover-letter/pfzzjspkthbk)
-
-**_Note:_ Above services do not guarantee up-to-date source code of Awesome CV**
-
-
-## How to Use
-
-#### Requirements
-
-A full TeX distribution is assumed.  [Various distributions for different operating systems (Windows, Mac, \*nix) are available](http://tex.stackexchange.com/q/55437) but TeX Live is recommended.
-You can [install TeX from upstream](https://tex.stackexchange.com/q/1092) (recommended; most up-to-date) or use `sudo apt-get install texlive-full` if you really want that.  (It's generally a few years behind.)
-
-If you don't want to install the dependencies on your system, this can also be obtained via [Docker](https://docker.com).
-
-#### Usage
-
-At a command prompt, run
+使用 XeLaTeX；本地需要完整 TeX Live 和中文字体。优先采用 Noto Sans CJK SC，也支持 macOS 的 PingFang SC 或 Adobe Kaiti Std。
 
 ```bash
-xelatex {your-cv}.tex
+make                         # examples/cv.pdf 和 examples/cv_zh.pdf
+make examples/cv.pdf          # 仅英文
+make examples/cv_zh.pdf       # 仅中文
+make clean                   # 清理生成文件
 ```
 
-Or using docker:
+使用与 CI 相同的 Docker 环境：
 
 ```bash
-docker run --rm --user $(id -u):$(id -g) -i -w "/doc" -v "$PWD":/doc thomasweise/texlive make
+docker build -t awesome-cv -f .devcontainer/Dockerfile .
+docker run --rm -v "$PWD:/workspace" -w /workspace awesome-cv make
 ```
 
-In either case, this should result in the creation of ``{your-cv}.pdf``
+`examples/resume.tex`、`examples/resume/` 和 `examples/coverletter.tex` 保留为上游模板示例，内容不属于陈玥茏，默认不编译、不发布。需要查看模板时可运行 `make examples`。
 
-#### Versioned PDF releases
+## 保存版本
 
-Push a tag on a commit containing the release workflow to archive that version's PDFs:
+推送分支会编译 CV，并在 Actions 中提供 `cv-build-results` artifact。提交修订后，推送一个新 tag 即可创建对应的 GitHub Release，并附上中英文 PDF：
 
 ```bash
-git tag -a v1.0.0 -m "CV v1.0.0"
-git push origin v1.0.0
+git tag -a cv-2026-10-24-unified -m "Unified bilingual CV"
+git push origin cv-2026-10-24-unified
 ```
 
-After a successful build, GitHub Actions creates a release for the tag and attaches all PDFs from `examples/`. Download each version from the repository's **Releases** page. Use a new tag for each version you want to keep.
+每个需要保留的版本使用新 tag。构建失败时不会发布 Release。普通分支推送、Pull Request 和手动运行只提供构建产物。
 
+## 模板来源
 
-## Credit
-
-[**LaTeX**](https://www.latex-project.org) is a fantastic typesetting program that a lot of people use these days, especially the math and computer science people in academia.
-
-[**LaTeX FontAwesome**](https://github.com/furl/latex-fontawesome) is bindings for FontAwesome icons to be used in XeLaTeX.
-
-[**Roboto**](https://github.com/google/roboto) is the default font on Android and ChromeOS, and the recommended font for Google’s visual language, Material Design.
-
-[**Source Sans Pro**](https://github.com/adobe-fonts/source-sans-pro) is a set of OpenType fonts that have been designed to work well in user interface (UI) environments.
-
-
-## Contact
-
-You are free to take my `.tex` file and modify it to create your own resume. Please don't use my resume for anything else without my permission, though!
-
-If you have any questions, feel free to join me at [`#posquit0` on Freenode](irc://irc.freenode.net/posquit0) and ask away. Click [here](https://kiwiirc.com/client/irc.freenode.net/posquit0) to connect.
-
-Good luck!
-
-
-## Maintainers
-- [posquit0](https://github.com/posquit0)
-- [OJFord](https://github.com/OJFord)
-
-
-## See Also
-
-* [Awesome Identity](https://github.com/posquit0/hugo-awesome-identity) - A single-page Hugo theme to introduce yourself.
+基于 Claud D. Park 的 [Awesome-CV](https://github.com/posquit0/Awesome-CV)。保留仓库及源码中的原始许可证和署名。
